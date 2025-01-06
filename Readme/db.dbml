@@ -1,0 +1,180 @@
+Table users {
+    id              String [pk, unique, default: uuid()]
+    name            String
+    email           String [unique]
+    profilePicture  String
+    role            String [default: "user"]
+    createdAt       DateTime [default: now()]
+    updatedAt       DateTime [default: now()]
+}
+
+Table authentication_providers {
+    id             String [pk, unique, default: uuid()]
+    provider       String
+    providerUserId String
+    accessToken    String
+    userId         String [ref: > users.id]
+    createdAt      DateTime [default: now()]
+    updatedAt      DateTime [default: now()]
+}
+
+Table roles {
+    id        String [pk, unique, default: uuid()]
+    name      String
+    createdAt DateTime [default: now()]
+    updatedAt DateTime [default: now()]
+}
+
+Table posts {
+    id          String [pk, unique, default: uuid()]
+    title       String
+    content     Text
+    authorId    String [ref: > users.id]
+    categoryId  String [ref: > categories.id]
+    publishedAt DateTime [default: now()]
+    createdAt   DateTime [default: now()]
+    updatedAt   DateTime [default: now()]
+}
+
+Table categories {
+    id        String [pk, unique, default: uuid()]
+    name      String
+    createdAt DateTime [default: now()]
+    updatedAt DateTime [default: now()]
+}
+
+Table comments {
+    id        String [pk, unique, default: uuid()]
+    content   Text
+    postId    String [ref: > posts.id]
+    userId    String [ref: > users.id]
+    createdAt DateTime [default: now()]
+    updatedAt DateTime [default: now()]
+}
+
+Table media {
+    id        String [pk, unique, default: uuid()]
+    fileUrl   String
+    fileType  String
+    userId    String [ref: > users.id]
+    createdAt DateTime [default: now()]
+    updatedAt DateTime [default: now()]
+}
+
+Table user_settings {
+    id        String [pk, unique, default: uuid()]
+    userId    String [ref: > users.id]
+    theme     String [default: "light"]
+    language  String [default: "en"]
+    createdAt DateTime [default: now()]
+    updatedAt DateTime [default: now()]
+}
+
+Table audit_logs {
+    id          String [pk, unique, default: uuid()]
+    userId      String [ref: > users.id]
+    action      String
+    timestamp   DateTime [default: now()]
+    createdAt   DateTime [default: now()]
+    updatedAt   DateTime [default: now()]
+}
+Table users {
+    id              String [pk, unique, default: uuid()]
+    name            String
+    email           String [unique]
+    profilePicture  String
+    role            String [default: "user"]
+    createdAt       DateTime [default: now()]
+    updatedAt       DateTime [default: now()]
+}
+
+Table authentication_providers {
+    id             String [pk, unique, default: uuid()]
+    provider       String
+    providerUserId String
+    accessToken    String
+    userId         String [ref: > users.id]
+    createdAt      DateTime [default: now()]
+    updatedAt      DateTime [default: now()]
+}
+
+Table roles {
+    id        String [pk, unique, default: uuid()]
+    name      String
+    createdAt DateTime [default: now()]
+    updatedAt DateTime [default: now()]
+}
+
+Table posts {
+    id          String [pk, unique, default: uuid()]
+    title       String
+    content     Text
+    authorId    String [ref: > users.id]
+    categoryId  String [ref: > categories.id]
+    publishedAt DateTime [default: now()]
+    createdAt   DateTime [default: now()]
+    updatedAt   DateTime [default: now()]
+}
+
+Table categories {
+    id        String [pk, unique, default: uuid()]
+    name      String
+    createdAt DateTime [default: now()]
+    updatedAt DateTime [default: now()]
+}
+
+Table comments {
+    id        String [pk, unique, default: uuid()]
+    content   Text
+    postId    String [ref: > posts.id]
+    userId    String [ref: > users.id]
+    createdAt DateTime [default: now()]
+    updatedAt DateTime [default: now()]
+}
+
+Table media {
+    id        String [pk, unique, default: uuid()]
+    fileUrl   String
+    fileType  String
+    userId    String [ref: > users.id]
+    createdAt DateTime [default: now()]
+    updatedAt DateTime [default: now()]
+}
+
+Table user_settings {
+    id        String [pk, unique, default: uuid()]
+    userId    String [ref: > users.id]
+    theme     String [default: "light"]
+    language  String [default: "en"]
+    createdAt DateTime [default: now()]
+    updatedAt DateTime [default: now()]
+}
+
+Table audit_logs {
+    id          String [pk, unique, default: uuid()]
+    userId      String [ref: > users.id]
+    action      String
+    timestamp   DateTime [default: now()]
+    createdAt   DateTime [default: now()]
+    updatedAt   DateTime [default: now()]
+}
+
+Table sessions {
+    id          String [pk, unique, default: uuid()]
+    userId      String [ref: > users.id]
+    sessionToken String [unique]
+    createdAt   DateTime [default: now()]
+    updatedAt   DateTime [default: now()]
+    expiresAt   DateTime
+}
+
+
+Table sessions {
+    id          String [pk, unique, default: uuid()]
+    userId      String [ref: > users.id]
+    sessionToken String [unique]
+    createdAt   DateTime [default: now()]
+    updatedAt   DateTime [default: now()]
+    expiresAt   DateTime
+}
+

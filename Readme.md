@@ -60,3 +60,12 @@ git push
 ```
 - Pushes the committed changes to the remote repository.
 - อัปโหลดการเปลี่ยนแปลงที่บันทึกไปยัง repository ระยะไกล
+
+
+npm install prisma --save-dev
+npm install @prisma/client
+
+docker-compose up -d
+
+npm install -D tailwindcss
+npx tailwindcss init
