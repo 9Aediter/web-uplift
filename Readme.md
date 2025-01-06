@@ -31,7 +31,10 @@ git log
 
 ## Uploading to GitHub for the First Time
 ```sh
-gh repo create my-awesome-project --public --source=. --push
+gh repo web-uplift --public --source=. --push
+
+git remote add origin https://github.com/username/repository-name.git
+
 ```
 - Creates a new public repository on GitHub and pushes the local repository to it.
 - สร้าง repository สาธารณะใหม่บน GitHub และอัปโหลด repository ท้องถิ่นไปยัง GitHub
