@@ -29,9 +29,11 @@ git log
 - Displays the commit history.
 - แสดงประวัติการบันทึกการเปลี่ยนแปลง
 
+gh auth login
+
 ## Uploading to GitHub for the First Time
 ```sh
-gh repo web-uplift --public --source=. --push
+gh repo create web-uplift --public --source=. --push
 
 git remote add origin https://github.com/username/repository-name.git
 
