@@ -7,12 +7,19 @@ module.exports = {
 
   ],
   theme: {
-    extend: {
-      colors: {
-        background: "var(--background)",
-        foreground: "var(--foreground)",
-      },
-    },
+    // extend: {
+    //   colors: {
+    //     background: "var(--background)",
+    //     foreground: "var(--foreground)",
+    //   },
+    // },
+
   },
-  plugins: [],
+  plugins: [
+    require('daisyui'),
+  ],
+  daisyui: {
+    themes: ["sunset","nord"],
+  },
+  darkMode: ['selector', '[data-theme="sunset"]']
 };
