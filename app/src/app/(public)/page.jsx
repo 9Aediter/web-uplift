@@ -1,9 +1,10 @@
-"use client"
+"use client";
 import Image from "next/image";
 import "@/style/tailwind.css";
-
+import Skills from "@/components/Skill/Index";
 //component
 import Navbar from "@/components/Navbar";
+import Scroll from "@/components/scroll-to-top";
 
 export default function Home() {
   return (
@@ -57,6 +58,7 @@ export default function Home() {
     // </div>
     <div>
       <Navbar />
+      <Scroll />
     </div>
   );
 }

@@ -19,6 +19,7 @@ model User {
   accounts      Account[]
   createdAt     DateTime  @default(now())
   updatedAt     DateTime  @updatedAt
+  posts         Post[]    // ความสัมพันธ์กับโพสต์ที่ผู้ใช้สร้าง
 }
 
 model Account {
@@ -38,4 +39,66 @@ model Account {
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@unique([provider, providerAccountId])
+}
+
+model Post {
+  id           Int      @id @default(autoincrement())
+  title        String   @unique
+  content      String?
+  slug         String?  @unique
+  canonicalURL String?
+  status       Status   @default(DRAFT)
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  // Relations
+  categoryId   Int?
+  category     Category? @relation(fields: [categoryId], references: [id])
+  tags         Tag[]     @relation("PostTags")
+  meta         Meta?
+  openGraph    OpenGraph?
+  userId       Int       // เพิ่มฟิลด์ userId
+  author       User      @relation(fields: [userId], references: [id]) // ความสัมพันธ์กับผู้สร้างโพสต์
+}
+
+enum Status {
+  DRAFT
+  PUBLIC
+  MEMBERS_ONLY
+  ARCHIVED
+}
+
+model Category {
+  id          Int        @id @default(autoincrement())
+  name        String     @unique
+  description String?
+  createdAt   DateTime   @default(now())
+  UpdatedAt   DateTime   @updatedAt
+  posts       Post[]
+}
+
+model Tag {
+  id          Int        @id @default(autoincrement())
+  name        String     @unique
+  createdAt   DateTime   @default(now())
+  UpdatedAt   DateTime   @updatedAt
+  posts       Post[]     @relation("PostTags")
+}
+
+model Meta {
+  id              Int      @id @default(autoincrement())
+  metaTitle       String
+  metaDescription String
+  metaKeywords    String?
+  postId          Int      @unique
+  post            Post     @relation(fields: [postId], references: [id])
+}
+
+model OpenGraph {
+  id             Int      @id @default(autoincrement())
+  ogTitle        String
+  ogDescription  String
+  ogImage        String?
+  postId         Int      @unique
+  post           Post     @relation(fields: [postId], references: [id])
 }
