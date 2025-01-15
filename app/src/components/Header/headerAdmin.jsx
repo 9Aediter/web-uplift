@@ -1,16 +1,17 @@
+import "@/style/tailwind.css";
 import Link from "next/link";
 import Image from "next/image";
 import DarkSwitch from "@/components/DarkSwitch";
 import { FiMessageSquare, FiBell, FiUser } from "react-icons/fi";
 
-const Header = ({ sidebarOpen, setSidebarOpen }) => {
+const Header = ({ sidebarOpen, setSidebarOpen, darkMode, setDarkMode }) => {
   return (
     <header className="sticky top-0 flex w-full shadow-md z-25 bg-base-100">
       <div className="flex items-center justify-between w-full px-4 py-3">
-        {/* Hamburger Menu  */}
+        {/* Hamburger Menu */}
         <button
           aria-label="Toggle Sidebar"
-          onClick={() => setSidebarOpen(!sidebarOpen)} // สลับค่า sidebarOpen
+          onClick={() => setSidebarOpen(!sidebarOpen)}
           className="btn btn-ghost btn-circle"
         >
           <svg
@@ -28,11 +29,15 @@ const Header = ({ sidebarOpen, setSidebarOpen }) => {
             />
           </svg>
         </button>
+
         {/* Actions */}
         <div className="flex items-center space-x-4">
           {/* Dark Mode Switch */}
           <div className="btn btn-ghost btn-circle">
-            <DarkSwitch />
+            <DarkSwitch
+              isDark={darkMode}
+              toggleDarkMode={() => setDarkMode(!darkMode)}
+            />
           </div>
 
           {/* Notification Icon */}
